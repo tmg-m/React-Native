@@ -11,6 +11,11 @@ export default function App() {
     setBtnPress('notPressed')
   }
 
+  const [btnPress2,setBtnPress2] = useState(false);
+  function handleBtnPress2(){
+    setBtnPress2((btnPress2) => !btnPress2)
+  }
+  
   return (
     <View style={styles.container}>
       <Text style={styles.innerText}>My first React Native App</Text>
@@ -24,10 +29,24 @@ export default function App() {
         <Text style={styles.textNorm}>Button with styles</Text>
       </Pressable>
 
-      <Pressable style={styles.myBtnFun} onPressIn={handleBtnPressIn} onPressOut={handleBtnPressOut}>
-        <Text>Button with function</Text>
-      </Pressable>
-      <Text>{btnPress}</Text>
+      <View style={styles.demoContainer}>
+        <Pressable style={styles.myBtnFun} onPressIn={handleBtnPressIn} onPressOut={handleBtnPressOut}>
+          <Text>Button with function</Text>
+        </Pressable>
+        <Text>{btnPress}</Text>
+      </View>
+      
+      <View style={styles.demoContainer}>
+        <Pressable style={styles.myBtnFun} onPress={handleBtnPress2}>
+          <Text>Buttin Toggle Y/N</Text>
+        </Pressable>
+        <View>
+          {btnPress2 
+            ? <Text>Toggle: YES</Text> 
+            : <Text>Toggle: NO</Text>
+          }
+          </View>
+      </View>
     </View>
   );
 }
@@ -41,6 +60,15 @@ const styles = StyleSheet.create({
     borderWidth: 10,
     borderColor: 'orange',
     borderRadius:-20,
+  },
+  demoContainer: {
+    borderWidth: 2,
+    borderRadius: 15,
+    borderColor: 'grey',
+    paddingVertical: 10,
+    paddingHorizontal: 10,
+    marginBottom: 10,
+    alignItems: 'center',
   },
   myInputText: {
     paddingVertical:10,
